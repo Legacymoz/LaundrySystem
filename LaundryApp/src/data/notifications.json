@@ -1,0 +1,162 @@
+[
+  {
+    "notificationID": "NOTIF2001",
+    "customerID": "CUST1001",
+    "orderID": "ORDER123",
+    "message": "Your order #ORDER123 is now being washed.",
+    "timestamp": "2025-03-18T10:30:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2002",
+    "customerID": "CUST1001",
+    "orderID": "ORDER123",
+    "message": "Your order #ORDER123 is now being ironed.",
+    "timestamp": "2025-03-18T12:00:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2003",
+    "customerID": "CUST1001",
+    "orderID": "ORDER124",
+    "message": "Your order #ORDER124 is now ready for pickup.",
+    "timestamp": "2025-03-19T08:00:00Z",
+    "read": true
+  },
+  {
+    "notificationID": "NOTIF2004",
+    "customerID": "CUST1001",
+    "orderID": "ORDER125",
+    "message": "Your order #ORDER125 has been dropped off successfully.",
+    "timestamp": "2025-03-19T14:30:00Z",
+    "read": true
+  },
+  {
+    "notificationID": "NOTIF2005",
+    "customerID": "CUST1001",
+    "orderID": "ORDER126",
+    "message": "Your order #ORDER126 is now being dry cleaned.",
+    "timestamp": "2025-03-20T09:15:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2006",
+    "customerID": "CUST1001",
+    "orderID": "ORDER127",
+    "message": "Your order #ORDER127 is now completed. Thank you for using our service!",
+    "timestamp": "2025-03-21T17:45:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2007",
+    "customerID": "CUST1002",
+    "orderID": "ORDER130",
+    "message": "Your order #ORDER130 is now being washed.",
+    "timestamp": "2025-03-18T11:45:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2008",
+    "customerID": "CUST1002",
+    "orderID": "ORDER130",
+    "message": "Your order #ORDER130 is now ready for pickup.",
+    "timestamp": "2025-03-19T15:20:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2009",
+    "customerID": "CUST1003",
+    "orderID": "ORDER135",
+    "message": "Your order #ORDER135 has been dropped off successfully.",
+    "timestamp": "2025-03-19T13:10:00Z",
+    "read": true
+  },
+  {
+    "notificationID": "NOTIF2010",
+    "customerID": "CUST1003",
+    "orderID": "ORDER136",
+    "message": "Your order #ORDER136 is now being ironed.",
+    "timestamp": "2025-03-20T11:00:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2011",
+    "customerID": "CUST1004",
+    "orderID": "ORDER140",
+    "message": "Your order #ORDER140 is now being dry cleaned.",
+    "timestamp": "2025-03-20T10:10:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2012",
+    "customerID": "CUST1004",
+    "orderID": "ORDER140",
+    "message": "Your order #ORDER140 is now ready for pickup.",
+    "timestamp": "2025-03-21T09:30:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2013",
+    "customerID": "CUST1005",
+    "orderID": "ORDER145",
+    "message": "Your order #ORDER145 is now completed.",
+    "timestamp": "2025-03-21T14:50:00Z",
+    "read": true
+  },
+  {
+    "notificationID": "NOTIF2014",
+    "customerID": "CUST1006",
+    "orderID": "ORDER150",
+    "message": "Your order #ORDER150 is now being washed.",
+    "timestamp": "2025-03-19T07:40:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2015",
+    "customerID": "CUST1006",
+    "orderID": "ORDER150",
+    "message": "Your order #ORDER150 is now being ironed.",
+    "timestamp": "2025-03-19T12:30:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2016",
+    "customerID": "CUST1007",
+    "orderID": "ORDER155",
+    "message": "Your order #ORDER155 is now completed. Thank you for choosing us!",
+    "timestamp": "2025-03-22T16:00:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2017",
+    "customerID": "CUST1008",
+    "orderID": "ORDER160",
+    "message": "Your order #ORDER160 is now being dry cleaned.",
+    "timestamp": "2025-03-20T15:20:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2018",
+    "customerID": "CUST1009",
+    "orderID": "ORDER165",
+    "message": "Your order #ORDER165 is now ready for pickup.",
+    "timestamp": "2025-03-21T10:45:00Z",
+    "read": false
+  },
+  {
+    "notificationID": "NOTIF2019",
+    "customerID": "CUST1010",
+    "orderID": "ORDER170",
+    "message": "Your order #ORDER170 has been dropped off successfully.",
+    "timestamp": "2025-03-21T17:00:00Z",
+    "read": true
+  },
+  {
+    "notificationID": "NOTIF2020",
+    "customerID": "CUST1011",
+    "orderID": "ORDER175",
+    "message": "Your order #ORDER175 is now being washed.",
+    "timestamp": "2025-03-22T08:10:00Z",
+    "read": false
+  }
+]

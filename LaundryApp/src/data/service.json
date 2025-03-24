@@ -1,0 +1,48 @@
+[
+  {"title":"wash_iron" ,
+    "name": "Wash & Iron",
+    "description": "Professional washing and ironing to keep your garments fresh, clean, and wrinkle-free.",
+    "categories": ["Shirt", "Pants", "Dress", "Socks", "Skirts", "Jackets"],
+    "prices": {
+      "Shirt": 2,
+      "Pants": 3,
+      "Dress": 5,
+      "Socks": 1,
+      "Skirts": 3,
+      "Jackets": 4
+    },
+    "states": ["washing", "ironing", "ready"] 
+    
+  },
+   {
+    "title":"iron" ,
+    "name": "Iron Only",
+    "description": "Get your clothes neatly pressed with our high-quality ironing service.",
+    "categories": ["Shirt", "Pants", "Dress", "Socks", "Skirts", "Jackets"],
+    "prices": {
+      "Shirt": 2,
+      "Pants": 3,
+      "Dress": 5,
+      "Socks": 1,
+      "Skirts": 3,
+      "Jackets": 4
+    },
+    "states": ["ironing", "ready"]
+  },
+  {
+    "title":"dry_clean" ,
+    "name": "Dry Clean",
+    "description": "Delicate and professional dry cleaning to remove tough stains while protecting your fabrics.",
+    "categories": ["Suit", "Coat", "Saree"],
+    "prices": { "Suit": 10, "Coat": 8, "Saree": 7 },
+    "states": ["washing", "ironing", "ready"]
+  },
+   {
+    "title":"duvet_cleaning",
+    "name": "Duvet Cleaning",
+    "description": "Deep cleaning for your duvets and comforters, ensuring a fresh and hygienic sleep experience.",
+    "categories": ["Small", "Medium", "Large", "King Size"],
+    "prices": { "Small": 200, "Medium": 350, "Large": 500, "King Size": 700 },
+    "states": ["washing", "ready"]
+  }
+]
