@@ -1,0 +1,158 @@
+.client-order-report {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+.report-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.filter-container .search-bar {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #213047;
+  border-radius: 4px;
+  height: fit-content;
+  margin-top: auto;
+}
+
+.filter-dropdown {
+  padding: 10px;
+  border: 1px solid #213047;
+  border-radius: 4px;
+  width: 230px;
+}
+
+.date-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.totals-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.totals-table {
+  border-collapse: collapse;
+  width: auto;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.totals-table td {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+.totals-title {
+  font-weight: bold;
+  text-align: left;
+}
+
+.totals-value {
+  text-align: right;
+  font-weight: bold;
+  color: #333;
+}
+
+.date-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.orders-table th {
+  background-color: #28436e;
+  color: white;
+}
+
+.orders-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.orders-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.details-button {
+  background-color: #28436e;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
+}
+
+.no-orders {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+/* Pagination Styles */
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination-button {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+  background-color: #ddd;
+}
+
+.pagination-button.disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 16px;
+  color: #555;
+}

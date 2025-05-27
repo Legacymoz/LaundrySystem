@@ -1,0 +1,116 @@
+/* Container for the summary section */
+.summary-container {
+  padding: 30px;
+  background: linear-gradient(135deg, #f9f9f9, #eaeaea);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  
+}
+
+/* Content wrapper */
+.summary-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Title styling */
+.summary-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #222;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Cards container */
+.summary-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+/* Individual card styling */
+.card {
+  flex: 1;
+  min-width: 220px;
+  max-width: 280px;
+  padding: 25px;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, #007bff, #0056b3); /* Default gradient */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #0056b3, #003f7f); /* Darker gradient on hover */
+}
+
+/* Card colors */
+.card:nth-child(1) {
+  background: linear-gradient(135deg, #007bff, #0056b3); /* Blue */
+}
+
+.card:nth-child(2) {
+  background: linear-gradient(135deg, #28a745, #1e7e34); /* Green */
+}
+
+.card:nth-child(3) {
+  background: linear-gradient(135deg, #ffc107, #e0a800); /* Yellow */
+}
+
+.card:nth-child(4) {
+  background: linear-gradient(135deg, #dc3545, #b21f2d); /* Red */
+}
+
+/* Card hover colors */
+.card:nth-child(1):hover {
+  background: linear-gradient(135deg, #0056b3, #003f7f); /* Darker Blue */
+}
+
+.card:nth-child(2):hover {
+  background: linear-gradient(135deg, #1e7e34, #155d27); /* Darker Green */
+}
+
+.card:nth-child(3):hover {
+  background: linear-gradient(135deg, #e0a800, #b38600); /* Darker Yellow */
+}
+
+.card:nth-child(4):hover {
+  background: linear-gradient(135deg, #b21f2d, #8a1622); /* Darker Red */
+}
+
+/* Card title styling */
+.card h2 {
+  font-size: 1.75rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Card value styling */
+.card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f9f9f9;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .summary-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}

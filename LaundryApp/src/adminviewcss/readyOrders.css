@@ -1,0 +1,154 @@
+/* Container styling */
+.ready-orders-container {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Title styling */
+.ready-orders-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Filter and search bar styling */
+.filterandsearch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.search-bar,
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-bar label,
+.filter-bar label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1e3a8a; /* Darker blue */
+}
+
+.search-bar input,
+.filter-bar select {
+  padding: 8px 12px;
+  border: 1px solid #1e3a8a; /* Darker blue border */
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+}
+
+.search-bar input:focus,
+.filter-bar select:focus {
+  border-color: #0d47a1; /* Even darker blue on focus */
+  box-shadow: 0 0 4px rgba(13, 71, 161, 0.5);
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  
+}
+
+thead {
+  background-color: #1e3a8a; /* Darker blue */
+  color: #ffffff;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr:hover {
+  background-color: #f1f5f9; /* Light gray on hover */
+}
+
+tbody td {
+  padding: 12px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Buttons container styling */
+.my-buttons {
+  display: flex;
+  gap: 10px; /* Add space between buttons */
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Assign Driver button styling */
+.assign-driver-button button {
+  background-color: #1e88e5; /* Blue */
+  color: #ffffff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.assign-driver-button button:hover {
+  background-color: #1565c0; /* Darker blue on hover */
+}
+
+/* View button styling */
+.view-button button {
+  background-color: #43a047; /* Green */
+  color: #ffffff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-button button:hover {
+  background-color: #2e7d32; /* Darker green on hover */
+}
+
+/* Proceed button styling */
+.proceed-button button {
+  background-color: #e53935; /* Red */
+  color: #ffffff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.proceed-button button:hover {
+  background-color: #c62828; /* Darker red on hover */
+}
+
+/* No orders message styling */
+.ready-orders-container p {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e3a8a; /* Darker blue */
+  margin-top: 20px;
+}

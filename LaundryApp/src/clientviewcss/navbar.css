@@ -1,0 +1,174 @@
+/* Navbar container */
+.navbar {
+  background-color: #1e293b; /* Dark blue-gray background */
+  padding: 1rem 2rem; /* Add padding for spacing */
+  display: flex;
+  
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  position: sticky; /* Make the navbar sticky */
+  top: 0; /* Stick to the top */
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Center logo vertically */
+  padding-left: 20px;
+  width:40%
+}
+
+.links-container {
+  display: flex;
+  width: 60%;
+}
+
+
+/* Logo styling */
+.logo {
+  font-size: 2.0rem;
+  font-weight: bold;
+  color: #ffffff; /* White text */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #63b3ed; /* Light blue hover effect */
+}
+
+/* Navbar links container */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 3.5rem; /* Add spacing between links */
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar links */
+.navbar-links li {
+  display: inline;
+}
+
+/* Navbar buttons */
+.navbar-links button {
+  background: none;
+  border: none;
+  color: #ffffff; /* White text */
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+}
+
+/* Hover effect for buttons */
+.navbar-links button:hover {
+  color: #63b3ed; /* Light blue hover color */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  text-decoration: none;
+}
+
+/* Active link styling */
+.navbar-links button.active {
+  color: #63b3ed; /* Highlight active link */
+  font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+    padding: 1rem;
+  }
+
+  .navbar-links {
+    flex-direction: column; /* Stack links vertically */
+    gap: 1rem; /* Add spacing between links */
+    width: 100%; /* Full width for links */
+  }
+
+  .navbar-links button {
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Full width for buttons */
+  }
+}
+/* Dropdown container */
+.dropdown {
+  position: relative; /* Ensure dropdown menu is positioned relative to this element */
+  display: inline-block;
+}
+
+/* Dropdown button styling */
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Add spacing between text and arrow */
+  background: none;
+  border: none;
+  color: #ffffff; /* White text */
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Dropdown arrow styling */
+.dropdown-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when dropdown is open */
+.dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg); /* Rotate arrow upwards */
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% ); /* Position just below the Profile button */
+  left: -10px;
+  background-color: #1e293b; /* Same background as the navbar */
+  border: none; /* Remove border */
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  z-index: 999;
+  min-width: 150px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Initially hidden */
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+/* Show dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 14px;
+  color: #ffffff; /* White text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu button:hover {
+  background-color: #374151; /* Slightly lighter shade for hover */
+  color: #63b3ed; /* Light blue hover color */
+}

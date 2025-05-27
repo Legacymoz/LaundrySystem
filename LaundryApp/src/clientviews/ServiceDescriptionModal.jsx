@@ -18,6 +18,7 @@ const ServiceDescriptionModal = ({ service, onClose }) => {
     // setIsServiceDescModalOpen(false);
     setIsModalOpen(true); // Open modal when a service is selected
     
+    
   };
 
   const handleCloseModal = () => {
@@ -27,7 +28,7 @@ const ServiceDescriptionModal = ({ service, onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content-description">
         <button className="close-button" onClick={handleCloseModal}>
           ✖
         </button>

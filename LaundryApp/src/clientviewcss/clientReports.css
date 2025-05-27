@@ -1,0 +1,55 @@
+/* Container styling */
+.client-reports-container {
+  border-radius: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Title styling */
+.client-reports-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+  margin-top: 20px;
+  color: #333;
+}
+
+/* Tabs container */
+.client-reports-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+  
+}
+
+/* Individual tab button styling */
+.client-reports-tab {
+  padding: 12px 20px;
+  color: #333;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Active tab styling */
+.client-reports-tab.active-tab {
+  background-color: #ffffff;
+  color: #060101;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Hover effect for tabs */
+.client-reports-tab:hover {
+  background-color: #e7e4e4;
+  color: #ffffff;
+}
+
+/* Content container */
+.client-reports-content {
+  margin-top: 0;
+}

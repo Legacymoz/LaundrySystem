@@ -1,0 +1,226 @@
+### Get all orders
+GET http://localhost:5000/api/orders
+
+### update state of order 67e6fe47f1ac77374c34f782
+PATCH http://localhost:5000/api/orders/680557bebdfdc0e0d9a87a7c/state
+
+
+### Get orders for one customer
+GET http://localhost:5000/api/orders/67ed5035ae4ea7a3e9fe0cbc
+
+
+### Add orders
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+
+{
+    "customerID": "user3",
+    "serviceType": "iron",
+    "garments": {
+        "Shirt": 2,
+        "Pants": 3,
+        "Jacket": 1
+    },
+    "pickupDate": "2025-03-28",
+    "pickupTime": "10:30",
+    "dropoffDate": "2025-03-30",
+    "dropoffTime": "16:00",
+    "pickupAddress": "123 Main Street, Cityville",
+    "dropoffAddress": "456 Oak Street, Townsville",
+    "totalCost": 25.50,
+    "status": "pending"
+    
+}
+
+
+### Get services
+GET http://localhost:5000/api/services
+
+###Patching a service
+### Update a service (partial update)
+PATCH http://localhost:5000/api/services/wash_iron
+Content-Type: application/json
+
+{
+  
+  "states": ["pending","scheduled","washing","ironing", "ready", "delivered", "completed"]
+}
+
+
+###Get a specific service
+GET http://localhost:5000/api/services/duvet_cleaning
+
+###Add a new service
+POST http://localhost:5000/api/services
+Content-Type: application/json
+
+  
+   {
+    "title":"duvet_cleaning",
+    "name": "Duvet Cleaning",
+    "description": "Deep cleaning for your duvets and comforters, ensuring a fresh and hygienic sleep experience.",
+    "categories": ["Small", "Medium", "Large", "King Size"],
+    "prices": { "Small": 200, "Medium": 350, "Large": 500, "King Size": 700 },
+    "states": ["washing", "ready"]
+  }
+
+###Delete a service
+DELETE http://localhost:5000/api/services/duvet_cleaning
+
+###Update a service
+PUT http://localhost:5000/api/services/wash_iron
+
+Content-Type: application/json
+     {
+    "title":"duvet_cleaning",
+    "name": "Duvet Cleaning",
+    "description": "Deep cleaning for your duvets and comforters, ensuring a fresh and hygienic sleep experience.",
+    "categories": ["Small", "Medium", "Large", "King Size"],
+    "prices": { "Small": 200, "Medium": 350, "Large": 500, "King Size": 1000 },
+    "states": ["washing", "ready"]
+  }
+
+
+###Get all customers
+
+PUT http://localhost:5000/test
+Content-Type: application/json
+
+  
+   {
+    "title":"Testing if body is workning"
+    
+  }
+
+
+
+
+###Get all Notifications
+GET http://localhost:5000/api/notifications
+
+### Get all Notifications for a specific customer
+GET http://localhost:5000/api/notifications/cust4
+
+### Reading a notification
+PATCH http://localhost:5000/api/notifications/67e6fe9cf1ac77374c34f788/read
+
+
+### Creating a new User
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "dum",
+  "password": "dum1234",
+  "roles": ["user"],
+  "name": "Samson Murage",
+  "number": "0712345678",
+  "email": "dum@example.com"
+}
+
+###Login into a user
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "password123"
+  
+}
+
+###Get all users
+GET http://localhost:5000/api/auth/users
+
+### Delete user request (manually set cookie)
+DELETE http://localhost:5000/api/users/67ed54cd76995d682e42694e
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWU3OWUzMDBhNzJjMzJjOGQ4MzU2NCIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTc0MzY4MjA0OSwiZXhwIjoxNzQ0Mjg2ODQ5fQ.a6B8sljLtKcOGEmckwvMYjtaiU2nzuwQPOVEEiDyhFA
+
+### Delete user request (Automatically set cookie)
+DELETE http://localhost:5000/api/auth/users/67ee7bc110669ccccf14538a
+
+
+### Get all timeslots
+GET http://localhost:5000/api/timeslots
+
+###Post timeslots
+POST http://localhost:5000/api/timeslots/update
+
+
+### creating timeslots for a specific range
+
+POST http://localhost:5000/api/timeslots/create-for-range
+Content-Type: application/json
+
+{
+  "startDate": "2025-04-07",
+  "endDate": "2025-04-15"
+}
+
+### Get all timeslots for a specific date
+GET http://localhost:5000/api/timeslots?date=2025-04-12
+
+
+### Creating Drivers
+POST http://localhost:5000/api/drivers
+Content-Type: application/json
+
+{
+  "name": " Wanjiku",
+  "email": "gracewanjiku@example.com",
+  "phone": "0723456789",
+  "licenseNumber": "GHI34567",
+  "vehicleDetails": "Nissan Note - Silver"
+}
+
+### Get all Drivers
+GET http://localhost:5000/api/drivers
+
+
+###Order_id "_id": "681bbbc3504300afe8683bf2", "_id": "681b9638ba7afcb8f293a653", "681b956dba7afcb8f293a636",
+### driverid for Stacey "_id": "681d14cd7941774522042671",
+
+### Assign Driver to Order
+PATCH http://localhost:5000/api/orders/681b956dba7afcb8f293a636/assign-driver
+Content-Type: application/json
+
+{
+  "driverId": "681d15067941774522042673"
+}
+
+### Get all orders
+GET http://localhost:5000/api/orders
+
+### Assign Orders to a Driver
+POST http://localhost:5000/api/drivers/681d14cd7941774522042671/assign-orders
+Content-Type: application/json
+
+{
+  "pickupOrders": ["681bbbc3504300afe8683bf2"]
+ 
+}
+
+### Get a Specific Driver by ID
+GET http://localhost:5000/api/drivers/681d15067941774522042673
+
+### update state of order 
+PATCH http://localhost:5000/api/orders/681bbbc3504300afe8683bf2/state
+
+###Delete a driver
+DELETE http://localhost:5000/api/drivers/681d15067941774522042673
+
+### Test M-Pesa Callback
+POST https://533f-197-139-56-10.ngrok-free.app/api/mpesa/callback
+Content-Type: application/json
+
+{
+  "status": "SUCCESS",
+  "amount": 1000,
+  "phone_number": "254712345678",
+  "api_ref": "LaundrySystem123",
+  "transaction_id": "TX123456789",
+  "description": "Payment successful"
+}
+
+### Delete Orders Without Payment Field
+DELETE http://localhost:5000/api/orders/cleanup-orders
+Content-Type: application/json

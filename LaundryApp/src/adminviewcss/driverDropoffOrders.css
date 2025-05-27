@@ -1,0 +1,47 @@
+.dropoff-orders-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropoff-orders-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dropoff-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dropoff-orders-table th,
+.dropoff-orders-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.dropoff-orders-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.dropoff-orders-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.dropoff-orders-table tr:hover {
+  background-color: #e9ecef;
+}
+
+.dropoff-orders-empty {
+  text-align: center;
+  font-size: 16px;
+  color: #6c757d;
+}

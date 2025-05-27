@@ -1,0 +1,59 @@
+/* Container styling */
+.orders-states-container {
+ 
+  
+  border-radius: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Title styling */
+.orders-states-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+/* Tabs container */
+.orders-states-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+  /* background-color: #e5e7eb; */
+  border-top-left-radius: 8px;
+  
+}
+
+/* Individual tab button styling */
+.orders-states-tab {
+  padding: 12px 20px;
+  
+  /* background-color: #e5e7eb;  */
+  color: #333;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Active tab styling */
+.orders-states-tab.active-tab {
+  background-color: #ffffff; 
+  color: #060101; /* White text */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Hover effect for tabs */
+.orders-states-tab:hover {
+  background-color: #e7e4e4; /* Light blue on hover */
+  color: #ffffff;
+}
+
+/* Content container */
+.orders-states-content {
+  margin-top: 0;
+}

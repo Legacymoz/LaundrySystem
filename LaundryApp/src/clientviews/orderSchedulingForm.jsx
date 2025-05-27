@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStore } from "../store/zustand";
-import axios from "axios"; // Import Axios
 import "../clientviewcss/orderSchedulingForm.css";
+import api from "../utility/api";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 const OrderSchedulingForm = () => {
-  const { selectedService, services, isModalOpen, setIsModalOpen,setIsServiceDescModalOpen } = useStore();
+  const {
+    selectedService,
+    services,
+    isModalOpen,
+    setIsModalOpen,
+    setIsServiceDescModalOpen,
+    clientInfo,
+    pickupTimeslots,
+    dropoffTimeslots,
+    timeMessage,
+    fetchTimeslots,
+    createOrder,
+  } = useStore();
 
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -19,67 +35,125 @@ const OrderSchedulingForm = () => {
 
   if (!isModalOpen || !selectedService) return null;
 
+  useEffect(() => {
+    if (formData.pickupDate) {
+      fetchTimeslots(formData.pickupDate, "pickup");
+    }
+  }, [formData.pickupDate]);
+
+  useEffect(() => {
+    if (formData.dropoffDate) {
+      fetchTimeslots(formData.dropoffDate, "dropoff");
+    }
+  }, [formData.dropoffDate]);
+
   const serviceData = services.find(
     (service) => service.title === selectedService.title
   );
-  console.log("My services", services);
-  console.log("My service data", serviceData);
+  console.log("Service Data:", serviceData);
 
-  // Handle form updates
+  const calculateTotalCost = () => {
+    const { garments } = formData;
+    const { prices } = selectedService;
+
+    let totalCost = 0;
+
+    for (const garment in garments) {
+      const quantity = parseInt(garments[garment], 10) || 0;
+      if (quantity > 0) {
+        const price = prices[garment] || 0;
+        totalCost += quantity * price;
+      }
+    }
+
+    return totalCost;
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Move to next/previous steps
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
-  // Handle form submission using Axios
-  const handleConfirmOrder = () => {
+  const handleTimeSelection = (type, time) => {
+    setFormData((prev) => ({
+      ...prev,
+      [type]: time,
+    }));
+  };
+
+    const validateForm = () => {
+    const { garments, pickupDate, pickupTime, dropoffDate, dropoffTime, pickupAddress, dropoffAddress } = formData;
+  
+    // Check if at least one garment is selected
+    const hasGarments = Object.values(garments).some((quantity) => quantity > 0);
+  
+    // Check if all required fields are filled
+    if (
+      !hasGarments ||
+      !pickupDate ||
+      !pickupTime ||
+      !dropoffDate ||
+      !dropoffTime ||
+      !pickupAddress ||
+      !dropoffAddress
+    ) {
+      return false;
+    }
+  
+    return true;
+  };
+
+  const handleConfirmOrder = async() => {
+    const totalCost = calculateTotalCost();
+
+    // Validate the form
+    if (!validateForm()) {
+      toast.error(
+        "Please fill in all required fields "
+      );
+      return;
+    }
+
     const order = {
-      service: selectedService,
+      customerID: clientInfo.id,
+      serviceType: selectedService.title,
       garments: formData.garments,
-      pickup: {
-        date: formData.pickupDate,
-        time: formData.pickupTime,
-        address: formData.pickupAddress,
-      },
-      dropoff: {
-        date: formData.dropoffDate,
-        time: formData.dropoffTime,
-        address: formData.sameAddress
-          ? formData.pickupAddress
-          : formData.dropoffAddress,
-      },
+      totalCost,
+      pickupDate: formData.pickupDate,
+      pickupTime: formData.pickupTime,
+      dropoffDate: formData.dropoffDate,
+      dropoffTime: formData.dropoffTime,
+      pickupAddress: formData.pickupAddress,
+      dropoffAddress: formData.dropoffAddress,
     };
 
-    console.log("Order Confirmed:", order);
+    const result = await createOrder(order);
 
-    // // Send order to backend using Axios
-    // axios
-    //   .post("https://dummyjson.com/c/8a65-d661-4d3c-982b", order)
-    //   .then((response) => {
-    //     console.log("Order saved:", response.data);
-    //     setIsModalOpen(false); // Close modal after successful order submission
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error saving order:", error);
-    //   });
-
-    // Retrieve existing orders from localStorage
-    const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
-
-    // Add new order to the array
-    existingOrders.push(order);
-
-    // Save updated orders back to localStorage
-    localStorage.setItem("orders", JSON.stringify(existingOrders));
-
-    console.log("Order saved to localStorage");
+    if (result.success) {
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setIsServiceDescModalOpen(false);
+      }, 1000); // Delay for 1 second to allow the toast to display
+    }
   };
 
   return (
     <div className="modal">
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+
       <div className="modal-content">
         <button
           className="close-button"
@@ -91,94 +165,172 @@ const OrderSchedulingForm = () => {
           ✖
         </button>
 
-        <h2>
+        <h2 className="modal-heading">
           {serviceData.name} - Step {step}/4
         </h2>
 
         <form onSubmit={(e) => e.preventDefault()}>
-          {/* Step 1: Select Garments */}
           {step === 1 && (
-            <div>
-              <h3>Select Garments & Quantity</h3>
+            <div className="form-step">
+              <h3 className="form-heading">Select Garments & Quantity</h3>
               {serviceData.categories.map((category) => (
-                <div key={category}>
-                  <label>{category}</label>
+                <div key={category} className="form-group">
+                  <label>
+                    {category} - Ksh {selectedService.prices[category]}
+                  </label>
                   <input
                     type="number"
                     name={category}
                     min="0"
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        garments: {
-                          ...prev.garments,
-                          [category]: e.target.value,
-                        },
-                      }))
-                    }
+                    value={formData.garments[category] || ""}
+                    onChange={(e) => {
+                      const value = parseInt(e.target.value, 10); // Parse the input value as an integer
+                      setFormData((prev) => {
+                        const updatedGarments = { ...prev.garments };
+
+                        if (value > 0) {
+                          // Add or update the garment with the new quantity
+                          updatedGarments[category] = value;
+                        } else {
+                          // Remove the garment if the quantity is 0
+                          delete updatedGarments[category];
+                        }
+
+                        return {
+                          ...prev,
+                          garments: updatedGarments,
+                        };
+                      });
+                    }}
                   />
                 </div>
               ))}
-              <button type="button" onClick={nextStep}>
-                Next
-              </button>
+              {/* Total Price Section */}
+              <div className="total-price">
+                <h4>Total Price: Ksh {calculateTotalCost()}</h4>
+              </div>
+              <div className="form-buttons">
+                <button
+                  type="button"
+                  className="btn btn-next"
+                  onClick={nextStep}
+                >
+                  Next
+                </button>
+              </div>
             </div>
           )}
 
-          {/* Step 2: Select Date & Time */}
           {step === 2 && (
-            <div>
-              <h3>Select Pickup & Drop-off Date & Time</h3>
-              <label>Pickup Date:</label>
-              <input
-                type="date"
-                name="pickupDate"
-                onChange={handleChange}
-                required
-              />
+            <div className="form-step">
+              <h3 className="form-heading">
+                Select Pickup & Drop-off Date & Time
+              </h3>
 
-              <label>Pickup Time:</label>
-              <input
-                type="time"
-                name="pickupTime"
-                onChange={handleChange}
-                required
-              />
+              <div className="form-group-date-time">
+                <label>Pickup Date:</label>
+                <input
+                  type="date"
+                  name="pickupDate"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-              <label>Drop-off Date:</label>
-              <input
-                type="date"
-                name="dropoffDate"
-                onChange={handleChange}
-                required
-              />
+              <div className="form-group-date-time">
+                <label>Pickup Time:</label>
+                {pickupTimeslots.length > 0 ? (
+                  <div className="time-buttons">
+                    {pickupTimeslots.map((slot, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        className={`time-button ${
+                          formData.pickupTime === slot.time ? "selected" : ""
+                        }`}
+                        onClick={() =>
+                          handleTimeSelection("pickupTime", slot.time)
+                        }
+                      >
+                        {slot.time}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="time-message">{timeMessage.pickup}</p>
+                )}
+              </div>
 
-              <label>Drop-off Time:</label>
-              <input
-                type="time"
-                name="dropoffTime"
-                onChange={handleChange}
-                required
-              />
+              <div className="form-group-date-time">
+                <label>Drop-off Date:</label>
+                <input
+                  type="date"
+                  name="dropoffDate"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-              <button type="button" onClick={prevStep}>
-                Back
-              </button>
-              <button type="button" onClick={nextStep}>
-                Next
-              </button>
+              <div className="form-group-date-time">
+                <label>Drop-off Time:</label>
+                {dropoffTimeslots.length > 0 ? (
+                  <div className="time-buttons">
+                    {dropoffTimeslots.map((slot, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        className={`time-button ${
+                          formData.dropoffTime === slot.time ? "selected" : ""
+                        }`}
+                        onClick={() =>
+                          handleTimeSelection("dropoffTime", slot.time)
+                        }
+                      >
+                        {slot.time}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="time-message">{timeMessage.dropoff}</p>
+                )}
+              </div>
+
+              <div className="form-buttons">
+                <button
+                  type="button"
+                  className="btn btn-back"
+                  onClick={prevStep}
+                >
+                  Back
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-next"
+                  onClick={nextStep}
+                >
+                  Next
+                </button>
+              </div>
             </div>
           )}
 
-          {/* Step 3: Select Address */}
           {step === 3 && (
-            <div>
-              <h3>Select Address</h3>
+            <div className="form-step">
+              <h3 className="form-heading">Select Address</h3>
               <label>Pickup Address:</label>
               <input
                 type="text"
                 name="pickupAddress"
-                onChange={handleChange}
+                value={formData.pickupAddress}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    pickupAddress: e.target.value,
+                    dropoffAddress: prev.sameAddress
+                      ? e.target.value
+                      : prev.dropoffAddress, // Update dropoffAddress if "Same as Pickup" is checked
+                  }))
+                }
                 required
               />
 
@@ -186,13 +338,14 @@ const OrderSchedulingForm = () => {
                 <input
                   type="checkbox"
                   name="sameAddress"
+                  checked={formData.sameAddress}
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
                       sameAddress: e.target.checked,
                       dropoffAddress: e.target.checked
                         ? prev.pickupAddress
-                        : "",
+                        : "", // Copy pickupAddress or clear dropoffAddress
                     }))
                   }
                 />
@@ -205,52 +358,101 @@ const OrderSchedulingForm = () => {
                   <input
                     type="text"
                     name="dropoffAddress"
-                    onChange={handleChange}
+                    value={formData.dropoffAddress}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        dropoffAddress: e.target.value,
+                      }))
+                    }
                     required
                   />
                 </>
               )}
 
-              <button type="button" onClick={prevStep}>
-                Back
-              </button>
-              <button type="button" onClick={nextStep}>
-                Next
-              </button>
+              <div className="form-buttons">
+                <button
+                  type="button"
+                  className="btn btn-back"
+                  onClick={prevStep}
+                >
+                  Back
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-next"
+                  onClick={nextStep}
+                >
+                  Next
+                </button>
+              </div>
             </div>
           )}
 
-          {/* Step 4: Confirm Order */}
           {step === 4 && (
-            <div>
-              <h3>Confirm Order</h3>
-              <p>
-                <strong>Garments:</strong> {JSON.stringify(formData.garments)}
-              </p>
-              <p>
-                <strong>Pickup Date & Time:</strong> {formData.pickupDate} at{" "}
-                {formData.pickupTime}
-              </p>
-              <p>
-                <strong>Drop-off Date & Time:</strong> {formData.dropoffDate} at{" "}
-                {formData.dropoffTime}
-              </p>
-              <p>
-                <strong>Pickup Address:</strong> {formData.pickupAddress}
-              </p>
-              <p>
-                <strong>Drop-off Address:</strong>{" "}
-                {formData.sameAddress
-                  ? "Same as Pickup"
-                  : formData.dropoffAddress}
-              </p>
+            <div className="form-step">
+              <h3 className="form-heading">Confirm Order</h3>
+              <div className="confirmation-details">
+                <table className="confirmation-table">
+                  <tbody>
+                    <tr>
+                      <th>Garments</th>
+                      <td>
+                        <ul className="garments-list">
+                          {Object.entries(formData.garments).map(
+                            ([garment, quantity]) => (
+                              <li key={garment}>
+                                {garment}: {quantity}
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Total Cost</th>
+                      <td>Ksh {calculateTotalCost()}</td>
+                    </tr>
+                    <tr>
+                      <th>Pickup Date & Time</th>
+                      <td>
+                        {formData.pickupDate} at {formData.pickupTime}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Drop-off Date & Time</th>
+                      <td>
+                        {formData.dropoffDate} at {formData.dropoffTime}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Pickup Address</th>
+                      <td>{formData.pickupAddress}</td>
+                    </tr>
+                    <tr>
+                      <th>Drop-off Address</th>
+                      <td>{formData.dropoffAddress}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-              <button type="button" onClick={prevStep}>
-                Back
-              </button>
-              <button type="submit" onClick={handleConfirmOrder}>
-                Confirm Order
-              </button>
+              <div className="form-buttons">
+                <button
+                  type="button"
+                  className="btn btn-back"
+                  onClick={prevStep}
+                >
+                  Back
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-confirm"
+                  onClick={handleConfirmOrder}
+                >
+                  Confirm Order
+                </button>
+              </div>
             </div>
           )}
         </form>

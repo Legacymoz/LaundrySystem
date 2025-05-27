@@ -1,0 +1,47 @@
+.pickup-orders-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pickup-orders-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.pickup-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pickup-orders-table th,
+.pickup-orders-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.pickup-orders-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.pickup-orders-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.pickup-orders-table tr:hover {
+  background-color: #e9ecef;
+}
+
+.pickup-orders-empty {
+  text-align: center;
+  font-size: 16px;
+  color: #6c757d;
+}

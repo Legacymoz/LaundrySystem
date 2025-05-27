@@ -1,0 +1,59 @@
+/* Container for notifications */
+.notifications-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notifications-container h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Notification list */
+.notifications-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notifications-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+/* Read notifications */
+.notifications-container li.read {
+  background-color: #e6f7e6; /* Light green for read notifications */
+}
+
+/* Unread notifications */
+.notifications-container li.unread {
+  background-color: #ffe6e6; /* Light red for unread notifications */
+}
+
+/* Hover effect */
+.notifications-container li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Timestamp styling */
+.notifications-container .timestamp {
+  font-size: 0.85rem;
+  color: #888;
+  margin-left: 10px;
+  white-space: nowrap;
+}

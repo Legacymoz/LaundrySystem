@@ -1,0 +1,97 @@
+.driver-list-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.driver-list-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.driver-list-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.driver-list-add-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.driver-list-add-button:hover {
+  background-color: #0056b3;
+}
+
+.driver-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.driver-list-header {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+.driver-list-row:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.driver-list-row:hover {
+  background-color: #e9ecef;
+}
+
+.driver-list-cell {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.driver-list-actions-cell {
+  display: flex;
+  gap: 10px;
+}
+
+.driver-list-orders-button,
+.driver-list-profile-button {
+  background-color: #28a745;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.driver-list-orders-button:hover {
+  background-color: #218838;
+}
+
+.driver-list-profile-button {
+  background-color: #17a2b8;
+}
+
+.driver-list-profile-button:hover {
+  background-color: #117a8b;
+}
+
+.driver-list-empty {
+  text-align: center;
+  font-size: 16px;
+  color: #6c757d;
+}
